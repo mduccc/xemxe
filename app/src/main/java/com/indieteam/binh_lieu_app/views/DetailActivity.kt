@@ -78,7 +78,7 @@ class DetailActivity : AppCompatActivity(), CallBehavior, Navigator, PermissionB
             coachData?.let { _coach ->
                 detailViewModel.apply {
                     setTuyenxe(_coach.tuyenxe)
-                    setGiave(Label.giave + _coach.giave)
+                    setGiave(Label.giave + _coach.giave + " " + Label.vnd)
                     setThoigian(Label.thoigian + _coach.thoigian1 + " - " + _coach.thoigian2)
                     setSodienthoai(Label.phone + _coach.sodienthoai)
                     setSoghexe(Label.soghe + _coach.soghexe)
