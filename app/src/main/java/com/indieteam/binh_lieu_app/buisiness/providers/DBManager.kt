@@ -84,6 +84,32 @@ class DBManager(context: Context) : DBProvider(context) {
         return result
     }
 
+    fun getCoach(id: String): CoachData? {
+        val readable = readableDatabase
+        val cursor = readable.rawQuery("SELECT * FROM coach WHERE id=?", arrayOf(id))
+        cursor.moveToFirst()
+
+        val result = if (cursor.columnCount > 0)
+            CoachData(
+                cursor.getString(cursor.getColumnIndex("id")),
+                cursor.getString(cursor.getColumnIndex("tuyenxe")),
+                cursor.getString(cursor.getColumnIndex("biensoxe")),
+                cursor.getString(cursor.getColumnIndex("giave")),
+                cursor.getString(cursor.getColumnIndex("soghexe")),
+                cursor.getString(cursor.getColumnIndex("thoigian1")),
+                cursor.getString(cursor.getColumnIndex("thoigian2")),
+                cursor.getString(cursor.getColumnIndex("sodienthoai")),
+                cursor.getString(cursor.getColumnIndex("ghichu"))
+            )
+        else
+            null
+
+        cursor.close()
+        readable.close()
+
+        return result
+    }
+
     fun deleteCoachs(): Boolean {
         try {
             if (!coachIsExist())
