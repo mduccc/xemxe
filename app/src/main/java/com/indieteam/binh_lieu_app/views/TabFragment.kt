@@ -31,9 +31,7 @@ import kotlinx.android.synthetic.main.fragment_tab.view.*
 import javax.inject.Inject
 
 class TabFragment : Fragment(), TabBehavior, RemoteCallback, LocalCallback, PermissionBehavior,
-    CallBehavior {
-    private val requestCode = 0
-    private val permissions = arrayOf(Manifest.permission.CALL_PHONE)
+    CallBehavior, Navigator {
     private var tab_type = -1
 
     @Inject
@@ -48,7 +46,7 @@ class TabFragment : Fragment(), TabBehavior, RemoteCallback, LocalCallback, Perm
     @Inject
     lateinit var dbManager: DBManager
 
-    private val recyclerAdapter = RecyclerAdapter(this)
+    private val recyclerAdapter = RecyclerAdapter(this, this)
 
     companion object {
         private val tab_coach = 1
@@ -71,6 +69,16 @@ class TabFragment : Fragment(), TabBehavior, RemoteCallback, LocalCallback, Perm
         App.appComponent.inject(this)
     }
 
+    override fun goToActivity(key: String, value: String, target: Class<*>) {
+        val intent = Intent(requireContext(), target)
+        intent.putExtra(key, value)
+        requireContext().startActivity(intent)
+    }
+
+    override fun killSelf() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun call(number: String) {
         val intent = Intent(Intent.ACTION_CALL)
         intent.data = Uri.parse("tel:$number")
@@ -82,7 +90,11 @@ class TabFragment : Fragment(), TabBehavior, RemoteCallback, LocalCallback, Perm
     }
 
     override fun requestPermisstion() {
-        ActivityCompat.requestPermissions(requireActivity(), permissions, requestCode)
+        ActivityCompat.requestPermissions(
+            requireActivity(),
+            AppDefine.permissions,
+            AppDefine.requestCode
+        )
     }
 
     override fun checkPermisstion(): Boolean {
@@ -194,7 +206,7 @@ class TabFragment : Fragment(), TabBehavior, RemoteCallback, LocalCallback, Perm
         grantResults: IntArray
     ) {
         when (requestCode) {
-            this.requestCode -> {
+            AppDefine.requestCode -> {
                 if (grantResults.size == permissions.size && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                 }
