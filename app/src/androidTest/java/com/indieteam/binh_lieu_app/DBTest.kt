@@ -11,7 +11,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class DBTest {
     @Test
-    fun readCoachsTable(){
+    fun readCoachsTable() {
 // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val dbManager = DBManager(appContext)
