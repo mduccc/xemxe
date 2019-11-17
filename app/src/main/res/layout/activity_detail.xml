@@ -1,127 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBackground"
-    android:orientation="vertical"
-    tools:context=".views.DetailActivity">
+<layout xmlns:bind="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="detailViewModel"
+            type="com.indieteam.binh_lieu_app.viewmodels.DetailViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/bg_corners"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
         android:orientation="vertical"
-        android:padding="15dp">
+        tools:context=".views.DetailActivity">
 
-        <TextView
-            android:id="@+id/tuyenxe"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="Tuyen xe"
-            android:textColor="@color/colorOnSurface"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/giave"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gia ve"
-            android:textColor="@color/colorOnSurface"
-            android:textSize="18sp"
-            android:textStyle="normal" />
-
-        <TextView
-            android:id="@+id/thoigian"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gio chay - Gioi den noi"
-            android:textColor="@color/colorOnSurface"
-            android:textSize="18sp"
-            android:textStyle="normal" />
-
-        <TextView
-            android:id="@+id/phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="So dien thoai"
-            android:textColor="@color/colorOnSurface"
-            android:textSize="18sp"
-            android:textStyle="normal" />
-
-        <TextView
-            android:id="@+id/soghe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="So ghe"
-            android:textColor="@color/colorOnSurface"
-            android:textSize="18sp"
-            android:textStyle="normal" />
-
-        <TextView
-            android:id="@+id/bienso"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bien so xe"
-            android:textColor="@color/colorOnSurface"
-            android:textSize="18sp"
-            android:textStyle="normal" />
-
-        <TextView
-            android:id="@+id/ghichu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ghi chu"
-            android:textColor="@color/colorOnSurface"
-            android:textSize="18sp"
-            android:textStyle="normal" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <RelativeLayout
-            android:id="@+id/exit_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/bg_corners"
-            android:gravity="center"
-            android:padding="7dp">
+            android:orientation="vertical"
+            android:padding="15dp">
 
-            <ImageView
+            <TextView
+                android:id="@+id/tuyenxe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_arrow_back" />
-        </RelativeLayout>
+                android:layout_marginBottom="10dp"
+                android:text="@={detailViewModel.tuyenxe}"
+                android:textColor="@color/colorOnSurface"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <View
-            android:layout_width="15dp"
-            android:layout_height="0dp" />
-
-        <RelativeLayout
-            android:id="@+id/detail_call"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_corners"
-            android:gravity="center"
-            android:padding="7dp">
-
-            <ImageView
+            <TextView
+                android:id="@+id/giave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_call" />
-        </RelativeLayout>
-    </LinearLayout>
+                android:text="@={detailViewModel.giave}"
+                android:textColor="@color/colorOnSurface"
+                android:textSize="18sp"
+                android:textStyle="normal" />
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/thoigian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{detailViewModel.thoigian}"
+                android:textColor="@color/colorOnSurface"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={detailViewModel.sodienthoai}"
+                android:textColor="@color/colorOnSurface"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/soghe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={detailViewModel.soghexe}"
+                android:textColor="@color/colorOnSurface"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/bienso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={detailViewModel.biensoxe}"
+                android:textColor="@color/colorOnSurface"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/ghichu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={detailViewModel.ghichu}"
+                android:textColor="@color/colorOnSurface"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/exit_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_corners"
+                android:gravity="center"
+                bind:exit="@{null}"
+                android:padding="7dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow_back" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="15dp"
+                android:layout_height="0dp" />
+
+            <RelativeLayout
+                android:id="@+id/detail_call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_corners"
+                android:gravity="center"
+                bind:call="@{null}"
+                android:padding="7dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_call" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
