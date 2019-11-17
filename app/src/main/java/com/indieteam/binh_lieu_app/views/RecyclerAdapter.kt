@@ -1,8 +1,6 @@
 package com.indieteam.binh_lieu_app.views
 
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +14,7 @@ import com.indieteam.binh_lieu_app.buisiness.models.TaxiData
 import kotlinx.android.synthetic.main.item.view.*
 import javax.inject.Inject
 
-class RecyclerAdapter(private val callBehavior: CallBehavior) :
+class RecyclerAdapter(private val callBehavior: CallBehavior, private val navigator: Navigator) :
     RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>() {
 
 
@@ -58,13 +56,17 @@ class RecyclerAdapter(private val callBehavior: CallBehavior) :
                 val ele = listData[position] as CoachData
                 icon.setImageResource(R.drawable.ic_bus)
                 name.text = "${ele.tuyenxe}"
-                other_info.text = "${ele.biensoxe} - ${ele.soghexe} chỗ - ${ele.giave}" + " VND"
-                time.text = "Thời gian: ${ele.thoigian1} - ${ele.thoigian2}"
-                phone.text = "Điện thoại: ${ele.sodienthoai}"
+                other_info.text = "${ele.biensoxe} - ${ele.soghexe} chỗ - ${ele.giave}" + " ${Label.vnd}"
+                time.text = "${Label.thoigian} ${ele.thoigian1} - ${ele.thoigian2}"
+                phone.text = "${Label.phone} ${ele.sodienthoai}"
 
                 call.setOnClickListener {
                     Log.d("Call to", ele.sodienthoai)
                     callBehavior.call(ele.sodienthoai)
+                }
+
+                setOnClickListener {
+                    navigator.goToActivity("id", ele.id, DetailActivity::class.java)
                 }
             }
             if (listData[position] is TaxiData) {
