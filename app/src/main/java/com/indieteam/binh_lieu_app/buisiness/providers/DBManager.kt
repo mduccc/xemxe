@@ -86,7 +86,7 @@ class DBManager(context: Context) : DBProvider(context) {
 
     fun getCoach(id: String): CoachData? {
         val readable = readableDatabase
-        val cursor = readable.rawQuery("SELECT * FROM coach WHERE id=?", arrayOf(id))
+        val cursor = readable.rawQuery("SELECT * FROM coachs WHERE id=?", arrayOf(id))
         cursor.moveToFirst()
 
         val result = if (cursor.columnCount > 0)
