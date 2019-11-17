@@ -1,10 +1,14 @@
 package com.indieteam.binh_lieu_app.viewmodels
 
+import android.util.Log
 import android.view.View
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.BindingAdapter
 import androidx.databinding.library.baseAdapters.BR
+import com.indieteam.binh_lieu_app.views.DetailActivity
+import kotlinx.android.synthetic.main.activity_detail.*
+import kotlinx.android.synthetic.main.activity_detail.view.*
 
 class DetailViewModel : BaseObservable() {
     private var tuyenxe = ""
@@ -87,17 +91,25 @@ class DetailViewModel : BaseObservable() {
     }
 
     companion object {
-        @BindingAdapter("call")
-        @JvmStatic
-        fun call(view: View, msg: String?) {
-
-        }
-
         @BindingAdapter("exit")
         @JvmStatic
         fun exit(view: View, msg: String?) {
+            view.setOnClickListener {
+                Log.d("Kill", "Kill")
+                (view.context as DetailActivity).apply {
+                    killSelf()
+                }
+            }
+        }
 
+        @BindingAdapter("call")
+        @JvmStatic
+        fun call(view: View, msg: String?) {
+            view.setOnClickListener {
+                (view.context as DetailActivity).apply {
+                    call(phone.text.toString())
+                }
+            }
         }
     }
-
 }
