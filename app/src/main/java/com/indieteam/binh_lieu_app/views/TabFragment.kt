@@ -36,6 +36,20 @@ class TabFragment : Fragment(), TabBehavior, RemoteCallback, LocalCallback, Perm
     private val permissions = arrayOf(Manifest.permission.CALL_PHONE)
     private var tab_type = -1
 
+    @Inject
+    lateinit var listViewModel: ListViewModel
+
+    @Inject
+    lateinit var taxiProvider: TaxiProvider
+
+    @Inject
+    lateinit var coachProvider: CoachProvider
+
+    @Inject
+    lateinit var dbManager: DBManager
+
+    private val recyclerAdapter = RecyclerAdapter(this)
+
     companion object {
         private val tab_coach = 1
         private val tab_taxi = 2
@@ -141,20 +155,6 @@ class TabFragment : Fragment(), TabBehavior, RemoteCallback, LocalCallback, Perm
         Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
         listViewModel.setProcessBar(false)
     }
-
-    @Inject
-    lateinit var listViewModel: ListViewModel
-
-    @Inject
-    lateinit var taxiProvider: TaxiProvider
-
-    @Inject
-    lateinit var coachProvider: CoachProvider
-
-    @Inject
-    lateinit var dbManager: DBManager
-
-    private val recyclerAdapter = RecyclerAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
