@@ -1,16 +1,17 @@
 package com.indieteam.binh_lieu_app.viewmodels
 
 import android.view.View
+import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.BindingAdapter
+import androidx.databinding.library.baseAdapters.BR
 
-class DetailViewModel {
+class DetailViewModel : BaseObservable() {
     private var tuyenxe = ""
     private var biensoxe = ""
     private var giave = ""
     private var soghexe = ""
-    private var thoigian1 = ""
-    private var thoigian2 = ""
+    private var thoigian = ""
     private var sodienthoai = ""
     private var ghichu = ""
 
@@ -21,6 +22,7 @@ class DetailViewModel {
 
     fun setTuyenxe(tuyenxe: String) {
         this.tuyenxe = tuyenxe
+        notifyPropertyChanged(BR.tuyenxe)
     }
 
     @Bindable
@@ -31,6 +33,7 @@ class DetailViewModel {
 
     fun setBiensoxe(biensoxe: String) {
         this.biensoxe = biensoxe
+        notifyPropertyChanged(BR.biensoxe)
     }
 
     @Bindable
@@ -40,6 +43,7 @@ class DetailViewModel {
 
     fun setGiave(giave: String) {
         this.giave = giave
+        notifyPropertyChanged(BR.giave)
     }
 
     @Bindable
@@ -49,25 +53,17 @@ class DetailViewModel {
 
     fun setSoghexe(soghexe: String) {
         this.soghexe = soghexe
+        notifyPropertyChanged(BR.soghexe)
     }
 
     @Bindable
-    fun getThoigian1(): String {
-        return thoigian1
+    fun getThoigian(): String {
+        return thoigian
     }
 
-    fun setThoigian1(thoigian1: String) {
-        this.thoigian1 = thoigian1
-    }
-
-    @Bindable
-    fun getThoigian2(): String {
-        return thoigian2
-    }
-
-    @Bindable
-    fun setThoigian2(thoigian2: String) {
-        this.thoigian2 = thoigian2
+    fun setThoigian(thoigian: String) {
+        this.thoigian = thoigian
+        notifyPropertyChanged(BR.thoigian)
     }
 
     @Bindable
@@ -77,6 +73,7 @@ class DetailViewModel {
 
     fun setSodienthoai(sodienthoai: String) {
         this.sodienthoai = sodienthoai
+        notifyPropertyChanged(BR.sodienthoai)
     }
 
     @Bindable
@@ -86,6 +83,7 @@ class DetailViewModel {
 
     fun setGhichu(ghichu: String) {
         this.ghichu = ghichu
+        notifyPropertyChanged(BR.ghichu)
     }
 
     companion object {
